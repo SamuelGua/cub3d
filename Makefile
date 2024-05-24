@@ -5,7 +5,6 @@ COLOR_YELLOW = \033[93m
 COLOR_BOLD = \033[1m
 MAKEFLAGS += --no-print-directory
 
-
 NAME			:= cud3d
 
 SRC_DIR			:= src
