@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/25 22:35:39 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/27 19:44:09 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,19 @@
 # include "../minilibx/mlx.h"
 # include <math.h>
 
-# define SCREEN_W 500
-# define SCREEN_H 500
+# define SCREEN_W 700
+# define SCREEN_H 700
+# define MOVE_SPEED 0.5
+# define ROT_SPEED 0.5
 
+//key press
 # define ESC 65307
+# define LEFT 65361
+# define RIGHT 65363
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_W 119
 
 typedef struct s_mlx
 {
@@ -73,5 +82,10 @@ typedef struct s_data
 	struct s_mlx		mlx;
 
 }						t_data;
+
+void	castray(t_data *data);
+void	made_mouv(t_data *data, int keycode);
+void	rotate(t_data *data, int keycode);
+
 
 #endif
