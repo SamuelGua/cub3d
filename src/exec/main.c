@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:17:45 by scely             #+#    #+#             */
-/*   Updated: 2024/05/27 18:47:11 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/28 13:31:06 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int ac, char *av[])
 	
 	data.mlx.win = mlx_new_window(data.mlx.ptr, 500, 500, "CUD3D");
 	// proteger et free || error fail to creat windows;
+
 	castray(&data);
 
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_capt, &data);

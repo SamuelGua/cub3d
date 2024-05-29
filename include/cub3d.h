@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/27 19:44:09 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:09:20 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ typedef struct s_mlx
 {
 	void				*ptr;
 	void				*win;
+
+	void				*img;
+	char *adrr;
+	int bpp;
+	int l_length;
+	int endian;
 
 	void				*img_one;
 	void				*img_two;

@@ -65,6 +65,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(OBJ_DIR) $(NAME)
+	@$(RM) minilibx
 	@echo "$(COLOR_RED)$(COLOR_BOLD)All files are deleted 🗑️$(COLOR_RESET)"
 
 

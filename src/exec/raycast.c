@@ -6,11 +6,20 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/27 18:45:22 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/28 13:33:56 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->mlx.adrr + (y * data->mlx.l_length + x * (data->mlx.bpp / 8));
+	*(unsigned int*)dst = color;
+}
 
 void castray(t_data *data)
 {	// 1
@@ -36,6 +45,11 @@ void castray(t_data *data)
 	int draw_end;
 
 	int x = -1;
+	if (data->mlx.img)
+		mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	data->mlx.img = mlx_new_image(data->mlx.ptr, SCREEN_W, SCREEN_H);
+	data->mlx.adrr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.l_length, &data->mlx.endian);
+
 	while (++x < SCREEN_W)
 	{
 		// 1 ray posittion and direction
@@ -117,10 +131,11 @@ void castray(t_data *data)
 
 
 		int color = 0xFF00FF;
-	
 		for (int y = draw_start; y < draw_end; y++)
 		{	
-			mlx_pixel_put(data->mlx.ptr, data->mlx.win, x, y, color);
+			// mlx_pixel_put(data->mlx.ptr, data->mlx.win, x, y, color);
+			my_mlx_pixel_put(data, x, y, color);
 		}
+		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	}
 }
