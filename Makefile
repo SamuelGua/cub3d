@@ -9,7 +9,7 @@ NAME			:= cub3d
 
 SRC_DIR			:= src
 OBJ_DIR			:= obj
-SRCS			= $(LIBFT_PATH) $(EXEC_PATH)
+SRCS			= $(LIBFT_PATH) $(EXEC_PATH) $(RAYCAST_PATH) $(MOVE_PATH)
 
 LIBFT_PATH		= $(LIBFT:%=src/libft/%)
 LIBFT			= ft_atoi.c ft_isprint.c ft_lstmap_bonus.c ft_putchar_fd.c ft_strjoin.c ft_strtrim.c\
@@ -22,13 +22,20 @@ LIBFT			= ft_atoi.c ft_isprint.c ft_lstmap_bonus.c ft_putchar_fd.c ft_strjoin.c 
 					ft_isdigit.c ft_lstlast_bonus.c ft_memset.c ft_striteri.c ft_strrchr.c ft_atoll.c\
 
 EXEC_PATH			= $(EXEC:%=src/exec/%)
-EXEC				= main.c raycast.c mouvement.c rotate.c
+EXEC				= main.c img.c free_elements.c
+
+MOVE_PATH			= $(MOVE:%=src/move/%)
+MOVE				= move.c rotate.c
+
+RAYCAST_PATH		= $(RAYCAST:%=src/raycast/%)
+RAYCAST				= raycast.c floor_casting.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 
 OBJS			:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-CFLAGS			:= -Wall -Wextra -Werror -g3 
+CFLAGS			:= -Wall -Wextra -Werror
+CFLAGS          += -g3
 CCFLAGS			:= -I include
 
 

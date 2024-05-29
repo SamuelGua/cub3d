@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 12:21:06 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 22:59:02 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 # define SCREEN_W 700
 # define SCREEN_H 700
-# define MOVE_SPEED 0.5
-# define ROT_SPEED 0.5
+# define MOVE_SPEED 0.95
+# define ROT_SPEED 0.25
 
 //key press
 # define ESC 65307
@@ -30,6 +30,11 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_W 119
+
+# define NORTH 1
+# define EAST 2
+# define SOUTH 3
+# define WEST 4
 
 typedef struct s_mlx
 {
@@ -42,10 +47,10 @@ typedef struct s_mlx
 	int l_length;
 	int endian;
 
-	void				*img_one;
-	void				*img_two;
-	void				*img_three;
-	void				*img_four;
+	void				*img_no;
+	void				*img_so;
+	void				*img_ea;
+	void				*img_we;
 }						t_mlx;
 
 typedef struct s_ray
@@ -54,11 +59,11 @@ typedef struct s_ray
 	double				pos_x;
 	double				pos_y;
 
-	// vector [sens initial du joueur x:y]
-	// EST = 1:0 | WEST = -1:0 | NORTH = 0:1 | SOUTH 0:-1
 	double				dir_x;
 	double				dir_y;
-
+	// couleur
+	int					ciel;
+	int 				floor;
 	// fov
 	double				plane_x;
 	double				plane_y;
@@ -78,7 +83,7 @@ typedef struct s_parsing
 	int					ciel[3];
 
 	char				**maps;
-	char				sens;
+	int				sens;
 }						t_parsing;
 
 typedef struct s_data
@@ -89,10 +94,17 @@ typedef struct s_data
 
 }						t_data;
 
-void	castray(t_data *data);
+int	castray(t_data *data);
 void	made_mouv(t_data *data, int keycode);
 void	rotate_left(t_data *data);
 void	rotate_right(t_data *data);
+int init_img(t_data *data);
+int cast_floor(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void free_img(t_data *data);
+void free_mlx(t_data *data);
+
+
 
 
 

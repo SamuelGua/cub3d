@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:17:45 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 12:23:50 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 23:25:50 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 char *maps[] = {
 	"1111111111",
-	"1010000001",
-	"1000100001",
+	"1010101001",
+	"1000001001",
 	"10N0000001",
+	"1010000101",
 	"1000000101",
-	"1000000001",
 	"1000000001",
 	"1010100101",
 	"1000000001",
@@ -32,42 +32,80 @@ char *maps[] = {
 	"\0"
 };
 
+void view_sens(t_data *data)
+{
+	data->ray.dir_x = 0;
+	data->ray.dir_y = 0;
+	data->ray.plane_x = 0;
+	data->ray.plane_y = 0;
+	if (data->pars.sens == NORTH)
+	{
+		data->ray.dir_y = 1;
+		data->ray.plane_x = -0.66;
+	}
+	else if (data->pars.sens == SOUTH)
+	{
+		data->ray.dir_y = -1;
+		data->ray.plane_x = 0.66;
+	} 
+	else if (data->pars.sens == EAST)
+	{
+		data->ray.dir_x = 1;
+		data->ray.plane_y = 0.66;
+	}
+	else if (data->pars.sens == WEST)
+	{
+		data->ray.dir_x = -1;
+		data->ray.plane_y = -0.66;
+	}
+}
+
+int	create_rgb(int *tab)
+{
+	unsigned char b;
+	unsigned char g;
+	unsigned char r;
+
+	r = (unsigned char)tab[0];
+	g = (unsigned char)tab[1];
+	b = (unsigned char)tab[2];
+	return ((r << 16) | (g << 8) | b);
+}
 void init_data(t_data *data)
 {
 	// CHANGER LES SPIRTES
-	data->pars.EA = ft_strdup("src/sprites/aloy.webp");
-	data->pars.NO = ft_strdup("src/sprites/bayek.webp");
-	data->pars.SO = ft_strdup("src/sprites/ichigo.webp");
-	data->pars.WE = ft_strdup("src/sprites/sharigan.webp");
+	data->pars.EA = ft_strdup("src/sprites/ciel.xpm");
+	data->pars.NO = ft_strdup("src/sprites/god_adam.xpm");
+	data->pars.SO = ft_strdup("src/sprites/man.xpm");
+	data->pars.WE = ft_strdup("src/sprites/picasso.xpm");
 
-	data->pars.floor[0] = 0; data->pars.floor[1] = 0; data->pars.floor[2] = 0;
-	data->pars.ciel[0] = 255; data->pars.ciel[1] = 255; data->pars.ciel[2] = 255;
+	data->pars.floor[0] = 101; data->pars.floor[1] = 67; data->pars.floor[2] = 33;
+	data->pars.ciel[0] = 173; data->pars.ciel[1] = 216; data->pars.ciel[2] = 230;
 
-	data->pars.maps = malloc(sizeof(char *) * 11);
+	data->pars.maps = malloc(sizeof(char *) * 12);
 	for (int i = 0; maps[i]; i++)
 		data->pars.maps[i] = ft_strdup(maps[i]);
 	data->pars.maps[11] = NULL;
 	
+	data->ray.floor = create_rgb(data->pars.floor);
+	data->ray.ciel = create_rgb(data->pars.ciel);
+	data->pars.sens = WEST;
+	view_sens(data);
 
-	data->ray.dir_x = 1;
-	data->ray.dir_y = 0;
-
-	// pos a changer si probleme
-	data->ray.pos_x = 2.5;
+// pos a changer si probleme
+	data->ray.pos_x = 3.5;
 	data->ray.pos_y = 2.5;
 
-	data->ray.plane_x = 0;
-	data->ray.plane_y = 0.66;
 // PEUT ETRE A CHANGER
-	if (data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y])
-		data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y] = '0';
+	data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y] = '0';
 
 }
 
 int	close_window(t_data *data)
 {
 	//free all
-	(void)data;
+	free_img(data);
+	free_mlx(data);
 	exit(1);
 }
 
@@ -76,9 +114,6 @@ int	key_capt(int keycode, t_data *data)
 	if (keycode == ESC)
 		close_window(data);
 	made_mouv(data, keycode);
-	for (int i = 0; data->pars.maps[i]; i++)
-		printf("=> %s\n", data->pars.maps[i]);
-	// mlx_clear_window(data->mlx.ptr, data->mlx.win);
 	castray(data);
 	return (0);
 }
@@ -87,23 +122,29 @@ int	key_capt(int keycode, t_data *data)
 // la carte est a l'envers
 int	main(int ac, char *av[])
 {
-	(void)av;
-	(void)ac;
-	// si ac != 2 || ERROR NO MAPS;
 	t_data data;
+
+	if (ac != 2 || !av)
+		return (printf("GIVE A PARAMETER\n"), 1);
 	init_data(&data);
 	data.mlx.ptr = mlx_init();
-	// proteger et free || error fail to init mlx;
-	// checker si les images sont bonnes;
-	
-	data.mlx.win = mlx_new_window(data.mlx.ptr, 500, 500, "CUD3D");
+	if (!data.mlx.ptr)
+		return (/*free parsing*/ printf("Error: MLX_INIT\n"), 1);
+	if (init_img(&data))
+		return (/*free parsing*/free_mlx(&data), printf("Error IMG_INIT\n"), 1);
+	data.mlx.win = mlx_new_window(data.mlx.ptr, SCREEN_W, SCREEN_H, "CUD3D");
+	if (!data.mlx.win)
+	{
+		free_img(&data);
+		free_mlx(&data);
+		return (/*free parsing*/ printf("Error: WIN_INIT\n"), 1);
+	}
 	// proteger et free || error fail to creat windows;
 
 	castray(&data);
-
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_capt, &data);
-
 	mlx_hook(data.mlx.win, 17, 1L << 17, close_window, &data);
+	// mlx_loop_hook(data.mlx.ptr, castray, &data);
 	mlx_loop(data.mlx.ptr);
 
 }

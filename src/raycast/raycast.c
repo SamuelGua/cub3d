@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 12:25:43 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 21:14:55 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void castray(t_data *data)
+int castray(t_data *data)
 {	// 1
 	double camera_x;
 	double raydir_x;
@@ -45,11 +45,12 @@ void castray(t_data *data)
 	int draw_end;
 
 	int x = -1;
-	// if (data->mlx.img)
-	// 	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	int y;
 	data->mlx.img = mlx_new_image(data->mlx.ptr, SCREEN_W, SCREEN_H);
+	//proteger aussi mlx_new_img
 	data->mlx.adrr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.l_length, &data->mlx.endian);
-
+	
+	cast_floor(data);
 	while (++x < SCREEN_W)
 	{
 		// 1 ray posittion and direction
@@ -127,16 +128,23 @@ void castray(t_data *data)
 			draw_start = 0;
 		draw_end = line_height / 2 + SCREEN_H / 2;
 		if (draw_end >= SCREEN_H)
-			draw_end = SCREEN_H - 1;
+			draw_end = SCREEN_H;
 
 
-		int color = 0xFF00FF;
-		for (int y = draw_start; y < draw_end; y++)
-		{	
-			// mlx_pixel_put(data->mlx.ptr, data->mlx.win, x, y, color);
+		int color = 0xA9A9A9;
+
+		// for (int y = draw_start; y < draw_end; y++)
+		// {	
+		// 	my_mlx_pixel_put(data, x, y, color);
+		// }
+		y = draw_start;
+		while (y < draw_end)
+		{
 			my_mlx_pixel_put(data, x, y, color);
+			y++;
 		}
 		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	}
-		mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	return (0);
 }
