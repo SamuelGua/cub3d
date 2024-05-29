@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 21:14:55 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 23:37:26 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,19 +132,14 @@ int castray(t_data *data)
 
 
 		int color = 0xA9A9A9;
-
-		// for (int y = draw_start; y < draw_end; y++)
-		// {	
-		// 	my_mlx_pixel_put(data, x, y, color);
-		// }
 		y = draw_start;
 		while (y < draw_end)
 		{
 			my_mlx_pixel_put(data, x, y, color);
 			y++;
 		}
-		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	}
+	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
 	return (0);
 }
