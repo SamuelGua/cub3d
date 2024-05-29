@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 09:09:20 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 12:21:06 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ typedef struct s_data
 
 void	castray(t_data *data);
 void	made_mouv(t_data *data, int keycode);
-void	rotate(t_data *data, int keycode);
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
+
 
 
 #endif

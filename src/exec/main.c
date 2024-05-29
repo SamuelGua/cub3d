@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:17:45 by scely             #+#    #+#             */
-/*   Updated: 2024/05/28 13:31:06 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 12:23:50 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char *maps[] = {
 	"1111111111",
 	"1010000001",
 	"1000100001",
-	"1N00000001",
+	"10N0000001",
 	"1000000101",
 	"1000000001",
 	"1000000001",
@@ -53,11 +53,15 @@ void init_data(t_data *data)
 	data->ray.dir_y = 0;
 
 	// pos a changer si probleme
-	data->ray.pos_x = 3.5;
-	data->ray.pos_y = 1.5;
+	data->ray.pos_x = 2.5;
+	data->ray.pos_y = 2.5;
 
 	data->ray.plane_x = 0;
 	data->ray.plane_y = 0.66;
+// PEUT ETRE A CHANGER
+	if (data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y])
+		data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y] = '0';
+
 }
 
 int	close_window(t_data *data)
@@ -74,7 +78,7 @@ int	key_capt(int keycode, t_data *data)
 	made_mouv(data, keycode);
 	for (int i = 0; data->pars.maps[i]; i++)
 		printf("=> %s\n", data->pars.maps[i]);
-	mlx_clear_window(data->mlx.ptr, data->mlx.win);
+	// mlx_clear_window(data->mlx.ptr, data->mlx.win);
 	castray(data);
 	return (0);
 }

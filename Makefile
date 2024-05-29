@@ -22,7 +22,7 @@ LIBFT			= ft_atoi.c ft_isprint.c ft_lstmap_bonus.c ft_putchar_fd.c ft_strjoin.c 
 					ft_isdigit.c ft_lstlast_bonus.c ft_memset.c ft_striteri.c ft_strrchr.c ft_atoll.c\
 
 EXEC_PATH			= $(EXEC:%=src/exec/%)
-EXEC				= main.c raycast.c mouvement.c
+EXEC				= main.c raycast.c mouvement.c rotate.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 

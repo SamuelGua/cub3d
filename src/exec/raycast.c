@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/28 13:33:56 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 12:25:43 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void castray(t_data *data)
 	int draw_end;
 
 	int x = -1;
-	if (data->mlx.img)
-		mlx_destroy_image(data->mlx.ptr, data->mlx.img);
+	// if (data->mlx.img)
+	// 	mlx_destroy_image(data->mlx.ptr, data->mlx.img);
 	data->mlx.img = mlx_new_image(data->mlx.ptr, SCREEN_W, SCREEN_H);
 	data->mlx.adrr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.l_length, &data->mlx.endian);
 
@@ -138,4 +138,5 @@ void castray(t_data *data)
 		}
 		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 	}
+		mlx_destroy_image(data->mlx.ptr, data->mlx.img);
 }
