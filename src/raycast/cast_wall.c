@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 10:57:37 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 11:01:21 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int castray(t_data *data)
 		}
 		double wallx;
 		if (side == 0)
-			wallx = data->ray.pos_y + perpwall_dist + raydir_y;
+			wallx = data->ray.pos_y + perpwall_dist * raydir_y;
 		else
 			wallx = data->ray.pos_x + perpwall_dist * raydir_x;
 		wallx -= floor(wallx);
@@ -170,7 +170,6 @@ int castray(t_data *data)
 			tex_x = IMG_W - tex_x - 1;
 		
 		// end
-		// int color = 0xA9A9A9;
 		y = draw_start;
 		while (y < draw_end)
 		{
