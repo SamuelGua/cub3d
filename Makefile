@@ -28,7 +28,7 @@ MOVE_PATH			= $(MOVE:%=src/move/%)
 MOVE				= move.c rotate.c
 
 RAYCAST_PATH		= $(RAYCAST:%=src/raycast/%)
-RAYCAST				= cast_wall.c cast_floor_ciel.c
+RAYCAST				= cast_wall.c cast_floor_ciel.c cast_utils_1.c cast_utils_2.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 
@@ -65,7 +65,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)
 		@$(DIR_DUP)
 		$(CC) $(CFLAGS) $(CCFLAGS) -c -o $@ $<
 
-
 clean:
 	@$(RM) $(OBJ_DIR)
 	@$(MAKE) -C minilibx/ clean
@@ -80,4 +79,4 @@ re:
 	@$(MAKE) fclean
 	@$(MAKE) all
 
-.PHONY: all clean fclean re git
+.PHONY: all clean fclean re

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_casting.c                                    :+:      :+:    :+:   */
+/*   cast_floor_ciel.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 18:58:57 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 08:44:19 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 21:20:47 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int cast_floor(t_data *data)
+int	cast_floor(t_data *data)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
+	int	c;
 
 	y = -1;
 	while (++y <= SCREEN_H)
@@ -24,7 +25,7 @@ int cast_floor(t_data *data)
 		while (x < SCREEN_W - 1)
 		{
 			my_mlx_pixel_put(data, x, y, data->ray.floor);
-			int c = SCREEN_H - y - 1;
+			c = SCREEN_H - y - 1;
 			if (c >= 0)
 				my_mlx_pixel_put(data, x, c, data->ray.ciel);
 			x++;

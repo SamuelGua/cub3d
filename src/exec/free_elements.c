@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:21:42 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 11:34:02 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 21:21:35 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_mlx(t_data *data)
 
 int	close_window(t_data *data)
 {
-	// free pars
+	free_pars(data);
 	free_img(data);
 	free_mlx(data);
 	exit(0);

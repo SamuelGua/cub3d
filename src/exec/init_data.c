@@ -6,16 +6,16 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 14:24:49 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 11:22:03 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 21:34:25 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 char	*maps[] = { "1111111111",
-					"1010101001",
-					"1000001001",
-					"10N0000001",
+					"101000011",
+					"1100110011",
+					"11N1000001",
 					"1010000101",
 					"1000000101",
 					"1000000001",
@@ -30,6 +30,9 @@ int	init_img(t_data *data)
 
 	i = 0;
 	j = 0;
+	mlx_get_screen_size(data->mlx.ptr, &j, &i);
+	if (SCREEN_W >= j - 1 || SCREEN_H >= i - 1)
+		return (printf("Error: Screen too small\n"), 1);
 	data->mlx.img_ea = mlx_xpm_file_to_image(data->mlx.ptr, data->pars.EA, &i,
 			&j);
 	data->mlx.img_no = mlx_xpm_file_to_image(data->mlx.ptr, data->pars.NO, &i,
@@ -92,9 +95,18 @@ void	init_data(t_data *data)
 	data->pars.NO = ft_strdup("src/sprites/god_adam.xpm");
 	data->pars.SO = ft_strdup("src/sprites/man.xpm");
 	data->pars.WE = ft_strdup("src/sprites/picasso.xpm");
+	if (!data->pars.WE ||!data->pars.SO
+		|| !data->pars.EA || !data->pars.NO)
+		exit(1);
 	data->pars.maps = malloc(sizeof(char *) * 12);
+	if (!data->pars.maps)
+			exit(1);
 	for (int i = 0; maps[i]; i++)
+	{
 		data->pars.maps[i] = ft_strdup(maps[i]);
+		if (!data->pars.maps[i])
+			exit(1);
+	}
 	data->pars.maps[11] = NULL;
 	data->pars.floor[0] = 101;
 	data->pars.floor[1] = 67;

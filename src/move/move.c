@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouvement.c                                        :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:37:13 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 22:11:25 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 21:21:08 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,4 @@ void	made_mouv(t_data *data, int keycode)
 		rotate_left(data);
 	if (keycode == RIGHT)
 		rotate_right(data);
-	printf("RAY_DIR_x = %f\n", data->ray.dir_x);
-	printf("RAY_DIR_Y = %f\n", data->ray.dir_y);
-	printf("POS_X = %f\n", data->ray.pos_x);
-	printf("POS_Y = %f\n", data->ray.pos_y);
-	for (int i = 0; data->pars.maps[i]; i++)
-		printf("=> %s\n", data->pars.maps[i]);
 }

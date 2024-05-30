@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 11:14:48 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 21:22:15 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft.h"
 # include <math.h>
 
-# define SCREEN_W 700
-# define SCREEN_H 700
+# define SCREEN_W 550
+# define SCREEN_H 550
 # define MOVE_SPEED 0.95
 # define ROT_SPEED 0.25
 # define IMG_H 64
@@ -37,7 +37,6 @@
 # define EAST 2
 # define SOUTH 3
 # define WEST 4
-
 
 typedef struct s_mlx
 {
@@ -94,6 +93,36 @@ typedef struct s_data
 
 }						t_data;
 
+typedef struct s_rutils
+{
+	double				camera_x;
+	double				raydir_x;
+	double				raydir_y;
+	int					map_x;
+	int					map_y;
+	double				side_distx;
+	double				side_disty;
+	double				delta_distx;
+	double				delta_disty;
+	double				perpwall_dist;
+	int					step_x;
+	int					step_y;
+	int					hit;
+	int					side;
+	int					line_height;
+	int					draw_start;
+	int					draw_end;
+	int					x;
+	int					y;
+	void				*texture;
+	double				wallx;
+	int					tex_x;
+	int					d;
+	int					tex_y;
+	int					color;
+
+}						t_rutils;
+
 int						castray(t_data *data);
 void					made_mouv(t_data *data, int keycode);
 void					rotate_left(t_data *data);
@@ -103,10 +132,21 @@ int						cast_floor(t_data *data);
 void					my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void					free_img(t_data *data);
 void					free_mlx(t_data *data);
+void	free_pars(t_data *data);
 int						close_window(t_data *data);
-void free_mlx(t_data *data);
-int	close_window(t_data *data);
-void init_data(t_data *data);
+void					free_mlx(t_data *data);
+int						close_window(t_data *data);
+void					init_data(t_data *data);
+
+
+void					distanceview(t_rutils *utils, t_data *data);
+void					set_textures(t_rutils *utils, t_data *data);
+void					draw_all(t_rutils *utils, t_data *data);
+void	set_value_init(t_rutils *utils, t_data *data);
+void	setp_sidedist(t_rutils *utils, t_data *data);
+void	dda_calcul(t_rutils *utils, t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int	get_texture_color(void *img, int tex_x, int tex_y);
 
 
 
