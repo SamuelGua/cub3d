@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 22:59:02 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 10:41:56 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # define EAST 2
 # define SOUTH 3
 # define WEST 4
+
+# define IMG_H 64
+# define IMG_W 64
 
 typedef struct s_mlx
 {

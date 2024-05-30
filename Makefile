@@ -28,7 +28,7 @@ MOVE_PATH			= $(MOVE:%=src/move/%)
 MOVE				= move.c rotate.c
 
 RAYCAST_PATH		= $(RAYCAST:%=src/raycast/%)
-RAYCAST				= raycast.c floor_casting.c
+RAYCAST				= cast_wall.c cast_floor_ciel.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 

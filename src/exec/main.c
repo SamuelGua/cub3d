@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:17:45 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 23:25:50 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 09:08:40 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ void init_data(t_data *data)
 	data->pars.SO = ft_strdup("src/sprites/man.xpm");
 	data->pars.WE = ft_strdup("src/sprites/picasso.xpm");
 
-	data->pars.floor[0] = 101; data->pars.floor[1] = 67; data->pars.floor[2] = 33;
-	data->pars.ciel[0] = 173; data->pars.ciel[1] = 216; data->pars.ciel[2] = 230;
-
 	data->pars.maps = malloc(sizeof(char *) * 12);
 	for (int i = 0; maps[i]; i++)
 		data->pars.maps[i] = ft_strdup(maps[i]);
 	data->pars.maps[11] = NULL;
 	
+	data->pars.floor[0] = 101; data->pars.floor[1] = 67; data->pars.floor[2] = 33;
+	data->pars.ciel[0] = 173; data->pars.ciel[1] = 216; data->pars.ciel[2] = 230;
 	data->ray.floor = create_rgb(data->pars.floor);
 	data->ray.ciel = create_rgb(data->pars.ciel);
+
 	data->pars.sens = WEST;
 	view_sens(data);
 
@@ -104,6 +104,7 @@ void init_data(t_data *data)
 int	close_window(t_data *data)
 {
 	//free all
+	//free pars
 	free_img(data);
 	free_mlx(data);
 	exit(1);
@@ -139,7 +140,6 @@ int	main(int ac, char *av[])
 		free_mlx(&data);
 		return (/*free parsing*/ printf("Error: WIN_INIT\n"), 1);
 	}
-	// proteger et free || error fail to creat windows;
 
 	castray(&data);
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_capt, &data);

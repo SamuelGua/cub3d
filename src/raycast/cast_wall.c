@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   cast_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:23:07 by scely             #+#    #+#             */
-/*   Updated: 2024/05/29 23:37:26 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/30 10:57:37 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->mlx.adrr + (y * data->mlx.l_length + x * (data->mlx.bpp / 8));
 	*(unsigned int*)dst = color;
 }
+
+int get_texture_color(void *img, int tex_x, int tex_y) {
+    char *pixel;
+    int color;
+    int bpp;
+    int line_length;
+    int endian;
+
+    pixel = mlx_get_data_addr(img, &bpp, &line_length, &endian);
+    pixel += tex_y * line_length + tex_x * (bpp / 8);
+    color = *(unsigned int*)pixel;
+    return color;
+}
+
+
 
 int castray(t_data *data)
 {	// 1
@@ -46,6 +61,7 @@ int castray(t_data *data)
 
 	int x = -1;
 	int y;
+	
 	data->mlx.img = mlx_new_image(data->mlx.ptr, SCREEN_W, SCREEN_H);
 	//proteger aussi mlx_new_img
 	data->mlx.adrr = mlx_get_data_addr(data->mlx.img, &data->mlx.bpp, &data->mlx.l_length, &data->mlx.endian);
@@ -112,15 +128,9 @@ int castray(t_data *data)
 				hit = 1;
 		}
 		if (side == 0)
-		{
-			// perpwall_dist = side_distx - delta_distx;
 			perpwall_dist = (map_x - data->ray.pos_x + (1 - step_x) / 2) / raydir_x;
-		}
 		else
-		{
-			// perpwall_dist = side_disty - delta_disty;
 			perpwall_dist = (map_y - data->ray.pos_y + (1 - step_y) / 2) / raydir_y;
-		}
 		// 3
 		line_height = (int)SCREEN_H / perpwall_dist;
 		draw_start = -line_height /2 + SCREEN_H / 2;
@@ -128,13 +138,45 @@ int castray(t_data *data)
 			draw_start = 0;
 		draw_end = line_height / 2 + SCREEN_H / 2;
 		if (draw_end >= SCREEN_H)
-			draw_end = SCREEN_H;
+			draw_end = SCREEN_H - 1;
+		// textures
+		void *texture;
+		if (side == 0)
+		{
+			if (step_x> 0)
+				texture = data->mlx.img_ea;
+			else
+				texture = data->mlx.img_we;
+		}
+		else
+		{
+			if (step_y > 0)
+				texture = data->mlx.img_so;
+			else
+				texture = data->mlx.img_no;
+		}
+		double wallx;
+		if (side == 0)
+			wallx = data->ray.pos_y + perpwall_dist + raydir_y;
+		else
+			wallx = data->ray.pos_x + perpwall_dist * raydir_x;
+		wallx -= floor(wallx);
 
-
-		int color = 0xA9A9A9;
+		int tex_x;
+		tex_x = (int)(wallx * IMG_W);
+		if (side == 0 && raydir_x > 0)
+			tex_x = IMG_W - tex_x - 1;
+		if (side == 1 && raydir_y < 0)
+			tex_x = IMG_W - tex_x - 1;
+		
+		// end
+		// int color = 0xA9A9A9;
 		y = draw_start;
 		while (y < draw_end)
 		{
+			int d = y * 256 - SCREEN_H * 128 + line_height * 128;
+            int tex_y = ((d * IMG_H) / line_height) / 256;
+            int color = get_texture_color(texture, tex_x, tex_y);
 			my_mlx_pixel_put(data, x, y, color);
 			y++;
 		}
