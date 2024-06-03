@@ -74,8 +74,8 @@ void	dda_calcul(t_rutils *utils, t_data *data)
 			utils->map_y += utils->step_y;
 			utils->side = 1;
 		}
-		if (data->pars.maps[utils->map_x][utils->map_y] == '1'
-			|| data->pars.maps[utils->map_x][utils->map_y] == '2')
+		if (data->pars.map[utils->map_x][utils->map_y] == '1'
+			|| data->pars.map[utils->map_x][utils->map_y] == '2')
 			utils->hit = 1;
 	}
 }

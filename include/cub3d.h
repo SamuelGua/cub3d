@@ -73,16 +73,17 @@ typedef struct s_ray
 
 typedef struct s_parsing
 {
+	char				*name;
+	char				**map;
 	char				*NO;
-	char				*SO;
-	char				*WE;
-	char				*EA;
-
+    char				*SO;
+    char				*WE;
+    char				*EA;
+	char				sens;
+	int					map_height;
 	int					floor[3];
-	int					ciel[3];
-
-	char				**maps;
-	int					sens;
+    int					ceiling[3];
+	char				*stash;
 }						t_parsing;
 
 typedef struct s_data
@@ -147,6 +148,30 @@ void	setp_sidedist(t_rutils *utils, t_data *data);
 void	dda_calcul(t_rutils *utils, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	get_texture_color(void *img, int tex_x, int tex_y);
+
+int		get_data(t_parsing *data);
+int     get_map(t_parsing *data);
+int		checkformat(char *name, char *format);
+int		get_check_all(char *name, t_parsing *data);
+void	get_rgb(t_parsing *data, char *line);
+void	get_texture(t_parsing *data, char **line, int fd);
+int		goto_next_value(char *line);
+char	*ft_strdup2(char *line);
+int		is_only_digits_or_whitespace(char *str);
+void	get_map_height(t_parsing *data, char **line, int fd);
+int		get_data(t_parsing *data);
+void	stock_line(t_parsing *data, char *line);
+int		check_data(t_parsing *data);
+int		check_data_texture(t_parsing *data);
+void	free_all(t_parsing *data);
+int		check_map_elem(char **map);
+void 	get_sens(t_parsing *data);
+char	*skip_to_value(char *line);
+int		check_map_wall(t_parsing *data, char **map_tab);
+int		check_all_floor(t_parsing *data, char **map);
+int		check_close_floor(t_parsing *data, char **map);
+int		check_diag_floor(t_parsing *data, char **map);
+int		valid_rgb_line(char *line);
 
 
 

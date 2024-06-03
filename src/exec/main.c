@@ -63,7 +63,12 @@ int	main(int ac, char *av[])
 
 	if (ac != 2 || !av)
 		return (printf("GIVE A PARAMETER\n"), 1);
-	// parsing
+	data.pars.name = av[1];
+	if (get_check_all(data.pars.name, &data.pars) == 0)
+	{
+		free_all(&data.pars);
+		return (0);
+	}
 	mlx_routine(&data);
 	return (0);
 }

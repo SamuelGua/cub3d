@@ -19,9 +19,9 @@ void	key_w(t_data *data)
 
 	new_posx = data->ray.pos_x + data->ray.dir_x * MOVE_SPEED;
 	new_posy = data->ray.pos_y + data->ray.dir_y * MOVE_SPEED;
-	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -32,9 +32,9 @@ void	key_s(t_data *data)
 
 	new_posx = data->ray.pos_x - data->ray.dir_x * MOVE_SPEED;
 	new_posy = data->ray.pos_y - data->ray.dir_y * MOVE_SPEED;
-	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -45,9 +45,9 @@ void	key_d(t_data *data)
 
 	new_posx = data->ray.pos_x - data->ray.dir_y * MOVE_SPEED;
 	new_posy = data->ray.pos_y + data->ray.dir_x * MOVE_SPEED;
-	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -58,9 +58,9 @@ void	key_a(t_data *data)
 
 	new_posx = data->ray.pos_x + data->ray.dir_y * MOVE_SPEED;
 	new_posy = data->ray.pos_y - data->ray.dir_x * MOVE_SPEED;
-	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 

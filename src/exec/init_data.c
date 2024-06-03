@@ -12,16 +12,16 @@
 
 #include "cub3d.h"
 
-char	*maps[] = { "1111111111",
-					"101000011",
-					"1100110011",
-					"11N1000001",
-					"1010000101",
-					"1000000101",
-					"1000000001",
-					"1010100101",
-					"1000000001",
-					"1111111111", "\0"};
+// char	*maps[] = { "1111111111",
+// 					"101000011",
+// 					"1100110011",
+// 					"11N1000001",
+// 					"1010000101",
+// 					"1000000101",
+// 					"1000000001",
+// 					"1010100101",
+// 					"1000000001",
+// 					"1111111111", "\0"};
 
 int	init_img(t_data *data)
 {
@@ -91,40 +91,57 @@ void	init_data(t_data *data)
 {
 	// CHANGER LES SPIRTES
 	//================a supprimer apres parsing========
-	data->pars.EA = ft_strdup("src/sprites/ciel.xpm");
-	data->pars.NO = ft_strdup("src/sprites/god_adam.xpm");
-	data->pars.SO = ft_strdup("src/sprites/man.xpm");
-	data->pars.WE = ft_strdup("src/sprites/picasso.xpm");
-	if (!data->pars.WE ||!data->pars.SO
-		|| !data->pars.EA || !data->pars.NO)
-		exit(1);
-	data->pars.maps = malloc(sizeof(char *) * 12);
-	if (!data->pars.maps)
-			exit(1);
-	for (int i = 0; maps[i]; i++)
-	{
-		data->pars.maps[i] = ft_strdup(maps[i]);
-		if (!data->pars.maps[i])
-			exit(1);
-	}
-	data->pars.maps[11] = NULL;
-	data->pars.floor[0] = 101;
-	data->pars.floor[1] = 67;
-	data->pars.floor[2] = 33;
-	data->pars.ciel[0] = 173;
-	data->pars.ciel[1] = 216;
-	data->pars.ciel[2] = 230;
+	// data->pars.EA = ft_strdup("src/sprites/ciel.xpm");
+	// data->pars.NO = ft_strdup("src/sprites/god_adam.xpm");
+	// data->pars.SO = ft_strdup("src/sprites/man.xpm");
+	// data->pars.WE = ft_strdup("src/sprites/picasso.xpm");
+	// if (!data->pars.WE ||!data->pars.SO
+	// 	|| !data->pars.EA || !data->pars.NO)
+	// 	exit(1);
+	// data->pars.maps = malloc(sizeof(char *) * 12);
+	// if (!data->pars.maps)
+	// 		exit(1);
+	// for (int i = 0; maps[i]; i++)
+	// {
+	// 	data->pars.maps[i] = ft_strdup(maps[i]);
+	// 	if (!data->pars.maps[i])
+	// 		exit(1);
+	// }
+	// data->pars.maps[11] = NULL;
+	// data->pars.floor[0] = 101;
+	// data->pars.floor[1] = 67;
+	// data->pars.floor[2] = 33;
+	// data->pars.ciel[0] = 173;
+	// data->pars.ciel[1] = 216;
+	// data->pars.ciel[2] = 230;
 	//====================================
 
 	data->ray.floor = create_rgb(data->pars.floor);
-	data->ray.ciel = create_rgb(data->pars.ciel);
-	data->pars.sens = WEST;
+	data->ray.ciel = create_rgb(data->pars.ceiling);
+	data->pars.sens = data->pars.sens;
 	view_sens(data);
 
 	//===============verifier si ca fonctionne sur les extreme=======
 	////[1;1] || {111,101,111};
-	data->ray.pos_x = 3.5;
-	data->ray.pos_y = 2.5;
+	int x = 0;
+	int j = 0;
+	while(data->pars.map[x])
+	{
+		j = 0;
+		while (data->pars.map[x][j])
+		{
+			if (data->pars.map[x][j] == 'N' || data->pars.map[x][j] == 'W'  
+				|| data->pars.map[x][j] == 'S'  || data->pars.map[x][j] == 'E')
+				{
+					data->ray.pos_x = x + 0.5;
+					data->ray.pos_y = j + 0.5;
+				}
+			j++;
+		}
+		x++;
+	}
+	//data->ray.pos_x = x + 0.5;
+	//data->ray.pos_y = j + 0.5;
 	//===============================================================
-	data->pars.maps[(int)data->ray.pos_x][(int)data->ray.pos_y] = '0';
+	data->pars.map[(int)data->ray.pos_x][(int)data->ray.pos_y] = '0';
 }

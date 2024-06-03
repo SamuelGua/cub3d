@@ -14,7 +14,7 @@
 
 void	free_pars(t_data *data)
 {
-	ft_free(data->pars.maps);
+	ft_free(data->pars.map);
 	free(data->pars.NO);
 	free(data->pars.SO);
 	free(data->pars.EA);
