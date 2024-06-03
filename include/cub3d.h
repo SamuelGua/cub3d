@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:18:14 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:22:15 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 19:28:01 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define SCREEN_W 550
 # define SCREEN_H 550
-# define MOVE_SPEED 0.95
+# define MOVE_SPEED 0.55
 # define ROT_SPEED 0.25
 # define IMG_H 64
 # define IMG_W 64
@@ -57,16 +57,12 @@ typedef struct s_mlx
 
 typedef struct s_ray
 {
-	// position du joueur
 	double				pos_x;
 	double				pos_y;
-
 	double				dir_x;
 	double				dir_y;
-	// couleur
 	int					ciel;
 	int					floor;
-	// fov
 	double				plane_x;
 	double				plane_y;
 }						t_ray;
@@ -75,14 +71,14 @@ typedef struct s_parsing
 {
 	char				*name;
 	char				**map;
-	char				*NO;
-    char				*SO;
-    char				*WE;
-    char				*EA;
+	char				*no;
+	char				*so;
+	char				*we;
+	char				*ea;
 	char				sens;
 	int					map_height;
 	int					floor[3];
-    int					ceiling[3];
+	int					ceiling[3];
 	char				*stash;
 }						t_parsing;
 
@@ -133,48 +129,43 @@ int						cast_floor(t_data *data);
 void					my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void					free_img(t_data *data);
 void					free_mlx(t_data *data);
-void	free_pars(t_data *data);
+void					free_pars(t_data *data);
 int						close_window(t_data *data);
 void					free_mlx(t_data *data);
 int						close_window(t_data *data);
 void					init_data(t_data *data);
-
-
 void					distanceview(t_rutils *utils, t_data *data);
 void					set_textures(t_rutils *utils, t_data *data);
 void					draw_all(t_rutils *utils, t_data *data);
-void	set_value_init(t_rutils *utils, t_data *data);
-void	setp_sidedist(t_rutils *utils, t_data *data);
-void	dda_calcul(t_rutils *utils, t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int	get_texture_color(void *img, int tex_x, int tex_y);
-
-int		get_data(t_parsing *data);
-int     get_map(t_parsing *data);
-int		checkformat(char *name, char *format);
-int		get_check_all(t_parsing *data);
-void	get_rgb(t_parsing *data, char *line);
-void	get_texture(t_parsing *data, char **line, int fd);
-int		goto_next_value(char *line);
-char	*ft_strdup2(char *line);
-int		is_only_digits_or_whitespace(char *str);
-void	get_map_height(t_parsing *data, char **line, int fd);
-int		get_data(t_parsing *data);
-void	stock_line(t_parsing *data, char *line);
-int		check_data(t_parsing *data);
-int		check_data_texture(t_parsing *data);
-void	free_all(t_parsing *data);
-int		check_map_elem(char **map);
-void 	get_sens(t_parsing *data);
-char	*skip_to_value(char *line);
-int		check_map_wall(t_parsing *data, char **map_tab);
-int		check_all_floor(t_parsing *data, char **map);
-int		check_close_floor(t_parsing *data, char **map);
-int		check_diag_floor(t_parsing *data, char **map);
-int		valid_rgb_line(char *line);
-int		is_map2(int i, int j, t_parsing *data, char **map);
-int		is_map(int i, int j, t_parsing *data, char **map);
-
-
+void					set_value_init(t_rutils *utils, t_data *data);
+void					setp_sidedist(t_rutils *utils, t_data *data);
+void					dda_calcul(t_rutils *utils, t_data *data);
+void					my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int						get_texture_color(void *img, int tex_x, int tex_y);
+int						get_data(t_parsing *data);
+int						get_map(t_parsing *data);
+int						checkformat(char *name, char *format);
+int						get_check_all(t_parsing *data);
+void					get_rgb(t_parsing *data, char *line);
+void					get_texture(t_parsing *data, char **line, int fd);
+int						goto_next_value(char *line);
+char					*ft_strdup2(char *line);
+int						is_only_digits_or_whitespace(char *str);
+void					get_map_height(t_parsing *data, char **line, int fd);
+int						get_data(t_parsing *data);
+void					stock_line(t_parsing *data, char *line);
+int						check_data(t_parsing *data);
+int						check_data_texture(t_parsing *data);
+void					free_all(t_parsing *data);
+int						check_map_elem(char **map);
+void					get_sens(t_parsing *data);
+char					*skip_to_value(char *line);
+int						check_map_wall(t_parsing *data, char **map_tab);
+int						check_all_floor(t_parsing *data, char **map);
+int						check_close_floor(t_parsing *data, char **map);
+int						check_diag_floor(t_parsing *data, char **map);
+int						valid_rgb_line(char *line);
+int						is_map2(int i, int j, t_parsing *data, char **map);
+int						is_map(int i, int j, t_parsing *data, char **map);
 
 #endif

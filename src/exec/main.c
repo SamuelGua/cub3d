@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 22:17:45 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:24:47 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 18:39:51 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	key_capt(int keycode, t_data *data)
 	return (0);
 }
 
-// la carte est a l'envers
 int	mlx_routine(t_data *data)
 {
 	init_data(data);

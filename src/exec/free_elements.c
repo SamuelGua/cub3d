@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:21:42 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:21:35 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 19:30:03 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	free_pars(t_data *data)
 {
 	ft_free(data->pars.map);
-	free(data->pars.NO);
-	free(data->pars.SO);
-	free(data->pars.EA);
-	free(data->pars.WE);
+	free(data->pars.no);
+	free(data->pars.so);
+	free(data->pars.ea);
+	free(data->pars.we);
 }
 
 void	free_img(t_data *data)

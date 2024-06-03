@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 21:08:49 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:11:04 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 19:19:40 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	set_textures(t_rutils *utils, t_data *data)
 	if (utils->side == 0)
 	{
 		if (utils->step_x > 0)
-			utils->texture = data->mlx.img_ea;
+			utils->texture = data->mlx.img_so;
 		else
-			utils->texture = data->mlx.img_we;
+			utils->texture = data->mlx.img_no;
 	}
 	else
 	{
 		if (utils->step_y > 0)
-			utils->texture = data->mlx.img_so;
+			utils->texture = data->mlx.img_ea;
 		else
-			utils->texture = data->mlx.img_no;
+			utils->texture = data->mlx.img_we;
 	}
 }
 

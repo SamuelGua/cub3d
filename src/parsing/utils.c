@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfelix <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:51:25 by cfelix            #+#    #+#             */
-/*   Updated: 2024/06/03 17:51:27 by cfelix           ###   ########.fr       */
+/*   Updated: 2024/06/03 19:36:11 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_strdup2(char *line)
 
 	i = 0;
 	str = ft_strdup(&line[0]);
+	if (!str)
+		return (NULL);
 	while (str[i] != '\n')
 		i++;
 	while (str[i] == '\n' || str[i] == '\t' || str[i] == ' ')

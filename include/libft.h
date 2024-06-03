@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:39:05 by scely             #+#    #+#             */
-/*   Updated: 2024/05/11 17:21:31 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 19:25:05 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 #  define BUFFER_SIZE 42
 # endif
 
-void	ft_free(char **tab);
-int		extend_stach(char **stash, char *buf);
-void	stock(char **stash, char *buf, int red);
-void	read_n_stock(int fd, char **stash);
-char	*get_next_line(int fd);
-int		found_new_line(char *str);
-int		char_until_end(char *str);
-void	clean_stash(char **stash);
-void	extract_line(char **stash, char **line);
-void	ft_strlcpy2(char **dst, char *src);
+void				ft_free(char **tab);
+int					extend_stash(char **stash, char *buf);
+void				stock(char **stash, char *buf, int red);
+void				read_n_stock(int fd, char **stash);
+char				*get_next_line(int fd);
+int					found_new_line(char *str);
+int					char_until_end(char *str);
+void				clean_stash(char **stash);
+void				extract_line(char **stash, char **line);
+void				ft_strlcpy2(char **dst, char *src);
 
 #endif

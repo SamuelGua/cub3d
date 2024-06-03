@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfelix <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:50:40 by cfelix            #+#    #+#             */
-/*   Updated: 2024/06/03 17:50:41 by cfelix           ###   ########.fr       */
+/*   Updated: 2024/06/03 19:35:11 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,26 @@ void	get_texture(t_parsing *data, char **line, int fd)
 	while (*line && !is_only_digits_or_whitespace(*line))
 	{
 		if (ft_strncmp(*line, "NO ", 3) == 0)
-			data->NO = ft_strdup2(skip_to_value(*line));
+			data->no = ft_strdup2(skip_to_value(*line));
 		else if (ft_strncmp(*line, "SO ", 3) == 0)
-			data->SO = ft_strdup2(skip_to_value(*line));
+			data->so = ft_strdup2(skip_to_value(*line));
 		else if (ft_strncmp(*line, "WE ", 3) == 0)
-			data->WE = ft_strdup2(skip_to_value(*line));
+			data->we = ft_strdup2(skip_to_value(*line));
 		else if (ft_strncmp(*line, "EA ", 3) == 0)
-			data->EA = ft_strdup2(skip_to_value(*line));
+			data->ea = ft_strdup2(skip_to_value(*line));
 		else if (ft_strncmp(*line, "F ", 2) == 0 || ft_strncmp(*line, "C ",
 				2) == 0)
 		{
 			if (valid_rgb_line(*line) == 0)
-			{
 				data->floor[0] = -1;
-				data->floor[0] = -1;
-			}
 			else
 				get_rgb(data, *line);
 		}
 		free(*line);
 		*line = get_next_line(fd);
 	}
+	if (!data->no || !data->so ||!data->ea || !data->we)
+		exit(2);
 }
 
 void	get_rgb(t_parsing *data, char *line)

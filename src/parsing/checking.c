@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfelix <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:50:10 by cfelix            #+#    #+#             */
-/*   Updated: 2024/06/03 18:11:11 by cfelix           ###   ########.fr       */
+/*   Updated: 2024/06/03 19:29:39 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	check_data(t_parsing *data)
 
 int	check_data_texture(t_parsing *data)
 {
-	if (data->NO == NULL || data->SO == NULL || data->WE == NULL
-		|| data->EA == NULL)
+	if (data->no == NULL || data->so == NULL || data->we == NULL
+		|| data->ea == NULL)
 	{
 		write(1, "Error\nTexture path missing\n", 28);
 		return (0);

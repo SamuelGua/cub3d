@@ -6,7 +6,7 @@
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 21:08:49 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:10:28 by scely            ###   ########.fr       */
+/*   Updated: 2024/06/03 18:43:58 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	set_value_init(t_rutils *utils, t_data *data)
 {
 	utils->camera_x = 2 * utils->x / (double)SCREEN_W - 1;
-	utils->raydir_x = data->ray.dir_x + data->ray.plane_x * utils->camera_x;
-	utils->raydir_y = data->ray.dir_y + data->ray.plane_y * utils->camera_x;
+	utils->raydir_y = data->ray.dir_x + data->ray.plane_x * utils->camera_x;
+	utils->raydir_x = data->ray.dir_y + data->ray.plane_y * utils->camera_x;
 	utils->map_x = (int)data->ray.pos_x;
 	utils->map_y = (int)data->ray.pos_y;
 	if (utils->raydir_x == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfelix <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:50:59 by cfelix            #+#    #+#             */
-/*   Updated: 2024/06/03 17:58:16 by cfelix           ###   ########.fr       */
+/*   Updated: 2024/06/03 19:28:51 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	free_all(t_parsing *data)
 	int	i;
 
 	i = 0;
-	free(data->NO);
-	free(data->SO);
-	free(data->WE);
-	free(data->EA);
+	free(data->no);
+	free(data->so);
+	free(data->we);
+	free(data->ea);
 	while (data->map[i] != NULL)
 		free(data->map[i++]);
 	free(data->map);
