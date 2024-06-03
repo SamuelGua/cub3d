@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfelix <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/03 17:51:25 by cfelix            #+#    #+#             */
+/*   Updated: 2024/06/03 17:51:27 by cfelix           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int goto_next_value(char *line)
+int	goto_next_value(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(!ft_isdigit(line[i]))
+	if (!ft_isdigit(line[i]))
 	{
-		while(!ft_isdigit(line[i]))
+		while (!ft_isdigit(line[i]))
 			i++;
 	}
-	else if(ft_isdigit(line[i]))
+	else if (ft_isdigit(line[i]))
 	{
-		while(ft_isdigit(line[i]))
+		while (ft_isdigit(line[i]))
 			i++;
 		i++;
 	}
@@ -21,8 +33,8 @@ int goto_next_value(char *line)
 
 char	*ft_strdup2(char *line)
 {
-	int i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	str = ft_strdup(&line[0]);
@@ -82,25 +94,26 @@ void	stock_line(t_parsing *data, char *line)
 	data->stash[j] = '\0';
 }
 
-int is_only_digits_or_whitespace(char *str)
+int	is_only_digits_or_whitespace(char *str)
 {
-    int	i;
-	int flag;
+	int	i;
+	int	flag;
 
-    i = 0;
+	i = 0;
 	flag = 0;
 	if (str == NULL)
 		return (0);
-    while (str[i] != '\0')
-    {
-        if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '\t' && str[i] != '\n' &&
-				str[i] != 'N' && str[i] != 'E' && str[i] != 'W' && str[i] != 'S')
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '\t'
+			&& str[i] != '\n' && str[i] != 'N' && str[i] != 'E' && str[i] != 'W'
+			&& str[i] != 'S')
 			return (0);
-        else if (ft_isdigit(str[i]) && flag == 0)
+		else if (ft_isdigit(str[i]) && flag == 0)
 			flag = 1;
 		i++;
-    }
-	if(flag == 0)
+	}
+	if (flag == 0)
 		return (0);
-    return (1);
+	return (1);
 }
