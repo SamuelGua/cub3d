@@ -152,7 +152,7 @@ int	get_texture_color(void *img, int tex_x, int tex_y);
 int		get_data(t_parsing *data);
 int     get_map(t_parsing *data);
 int		checkformat(char *name, char *format);
-int		get_check_all(char *name, t_parsing *data);
+int		get_check_all(t_parsing *data);
 void	get_rgb(t_parsing *data, char *line);
 void	get_texture(t_parsing *data, char **line, int fd);
 int		goto_next_value(char *line);

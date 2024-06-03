@@ -23,22 +23,22 @@ void	get_texture(t_parsing *data, char **line, int fd)
 {
     while (*line && !is_only_digits_or_whitespace(*line))
     {
-        if (ft_strncmp(*line, "NO", 2) == 0)
+        if (ft_strncmp(*line, "NO ", 3) == 0)
             data->NO = ft_strdup2(skip_to_value(*line));
-        else if (ft_strncmp(*line, "SO", 2) == 0)
+        else if (ft_strncmp(*line, "SO ", 3) == 0)
             data->SO = ft_strdup2(skip_to_value(*line));
-        else if (ft_strncmp(*line, "WE", 2) == 0)
+        else if (ft_strncmp(*line, "WE ", 3) == 0)
             data->WE = ft_strdup2(skip_to_value(*line));
-        else if (ft_strncmp(*line, "EA", 2) == 0)
+        else if (ft_strncmp(*line, "EA ", 3) == 0)
             data->EA = ft_strdup2(skip_to_value(*line));
-        else if (ft_strncmp(*line, "F", 1) == 0 || ft_strncmp(*line, "C", 1) == 0)
+        else if (ft_strncmp(*line, "F ", 2) == 0 || ft_strncmp(*line, "C ", 2) == 0)
 		{
-			/*if (valid_rgb_line(*line) == 0)
+			if (valid_rgb_line(*line) == 0)
 			{
 				data->floor[0] = -1;
 				data->floor[0] = -1;
 			}
-			else*/
+			else
 				get_rgb(data, *line);
 		}
 		printf("%s", *line);

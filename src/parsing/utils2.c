@@ -7,12 +7,15 @@ int valid_rgb_line(char *line)
     i = 1;
     while (line[i] == ' ' || line[i] == '\t')
         i++;
-    while(line[i])
+    if (line[i] != '\n')
     {
-        if (!ft_isdigit(line[i]) && line[i] != ',')
-            return (0);
-        i++;
+        while(ft_isdigit(line[i]) || line[i] == ',')
+            i++;
+        while (line[i] == ' ' || line[i] == '\t')
+            i++;
     }
+    if (line[i] != '\n')
+        return (0);
     return (1);
 }
 void free_all(t_parsing *data)

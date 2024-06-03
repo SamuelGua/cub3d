@@ -26,10 +26,10 @@ char	*ft_strdup2(char *line)
 
 	i = 0;
 	str = ft_strdup(&line[0]);
-	while (str[i])
+	while (str[i] != '\n')
 		i++;
-	i--;
-	str[i] = '\0';
+	while (str[i] == '\n' || str[i] == '\t' || str[i] == ' ')
+		str[i--] = '\0';
 	return (str);
 }
 

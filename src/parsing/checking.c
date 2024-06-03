@@ -1,9 +1,7 @@
 #include "cub3d.h"
 
-int	get_check_all(char *name, t_parsing *data)
+int	get_check_all(t_parsing *data)
 {
-	if (checkformat(name, ".cub") == 0)
-		return (0);
 	if(get_data(data) == 0)
 		return (0);
 	if(check_data(data) == 0)
