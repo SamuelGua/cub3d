@@ -5,7 +5,7 @@ COLOR_YELLOW = \033[93m
 COLOR_BOLD = \033[1m
 MAKEFLAGS += --no-print-directory
 
-NAME			:= cub3d
+NAME			:= cub3D
 
 SRC_DIR			:= src
 OBJ_DIR			:= obj
