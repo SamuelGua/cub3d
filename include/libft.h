@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
 
 int					ft_atoi(const char *c);
 void				ft_bzero(void *s, size_t n);
@@ -39,7 +38,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
-char				*ft_strdup(char *src);
+char				*ft_strdup(const char *src);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -79,15 +78,8 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 #  define BUFFER_SIZE 42
 # endif
 
-void	ft_free(char **tab);
-int		extend_stach(char **stash, char *buf);
-void	stock(char **stash, char *buf, int red);
-void	read_n_stock(int fd, char **stash);
-char	*get_next_line(int fd);
-int		found_new_line(char *str);
-int		char_until_end(char *str);
-void	clean_stash(char **stash);
-void	extract_line(char **stash, char **line);
-void	ft_strlcpy2(char **dst, char *src);
+void				ft_free(char **tab);
+char				*ft_free_strjoin(char *s1, char const *s2);
+char				*get_next_line(int fd);
 
 #endif

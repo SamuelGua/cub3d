@@ -9,7 +9,7 @@ NAME			:= cub3d
 
 SRC_DIR			:= src
 OBJ_DIR			:= obj
-SRCS			= $(LIBFT_PATH) $(EXEC_PATH) $(RAYCAST_PATH) $(MOVE_PATH) $(PARSING_PATH)
+SRCS			= $(LIBFT_PATH) $(EXEC_PATH) $(RAYCAST_PATH) $(MOVE_PATH)
 
 LIBFT_PATH		= $(LIBFT:%=src/libft/%)
 LIBFT			= ft_atoi.c ft_isprint.c ft_lstmap_bonus.c ft_putchar_fd.c ft_strjoin.c ft_strtrim.c\
@@ -19,20 +19,16 @@ LIBFT			= ft_atoi.c ft_isprint.c ft_lstmap_bonus.c ft_putchar_fd.c ft_strjoin.c 
 					ft_isalnum.c ft_lstclear_bonus.c ft_memcmp.c ft_split.c ft_strmapi.c get_next_line.c\
 					ft_isalpha.c ft_lstdelone_bonus.c ft_memcpy.c ft_strchr.c ft_strncmp.c ft_isascii.c\
 					ft_lstiter_bonus.c ft_memmove.c ft_strdup.c ft_strnstr.c ft_free_strjoin.c\
-					ft_isdigit.c ft_lstlast_bonus.c ft_memset.c ft_striteri.c ft_strrchr.c ft_atoll.c get_next_line_utils.c\
+					ft_isdigit.c ft_lstlast_bonus.c ft_memset.c ft_striteri.c ft_strrchr.c ft_atoll.c\
 
 EXEC_PATH			= $(EXEC:%=src/exec/%)
-EXEC				= main.c init_data.c free_elements.c
+EXEC				= main.c img.c free_elements.c
 
 MOVE_PATH			= $(MOVE:%=src/move/%)
 MOVE				= move.c rotate.c
 
 RAYCAST_PATH		= $(RAYCAST:%=src/raycast/%)
-RAYCAST				= cast_wall.c cast_floor_ciel.c cast_utils_1.c cast_utils_2.c
-
-
-PARSING_PATH		= $(PARSING:%=src/parsing/%)
-PARSING				= checking.c get_data.c utils.c check_map.c get_sens.c utils2.c
+RAYCAST				= raycast.c floor_casting.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 
@@ -69,6 +65,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)
 		@$(DIR_DUP)
 		$(CC) $(CFLAGS) $(CCFLAGS) -c -o $@ $<
 
+
 clean:
 	@$(RM) $(OBJ_DIR)
 	@$(MAKE) -C minilibx/ clean
@@ -83,4 +80,4 @@ re:
 	@$(MAKE) fclean
 	@$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re git

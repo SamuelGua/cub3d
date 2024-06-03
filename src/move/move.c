@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scely <scely@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 13:37:13 by scely             #+#    #+#             */
-/*   Updated: 2024/05/30 21:21:08 by scely            ###   ########.fr       */
+/*   Updated: 2024/05/29 22:11:25 by scely            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	key_w(t_data *data)
 
 	new_posx = data->ray.pos_x + data->ray.dir_x * MOVE_SPEED;
 	new_posy = data->ray.pos_y + data->ray.dir_y * MOVE_SPEED;
-	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -32,9 +32,9 @@ void	key_s(t_data *data)
 
 	new_posx = data->ray.pos_x - data->ray.dir_x * MOVE_SPEED;
 	new_posy = data->ray.pos_y - data->ray.dir_y * MOVE_SPEED;
-	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -45,9 +45,9 @@ void	key_d(t_data *data)
 
 	new_posx = data->ray.pos_x - data->ray.dir_y * MOVE_SPEED;
 	new_posy = data->ray.pos_y + data->ray.dir_x * MOVE_SPEED;
-	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -58,9 +58,9 @@ void	key_a(t_data *data)
 
 	new_posx = data->ray.pos_x + data->ray.dir_y * MOVE_SPEED;
 	new_posy = data->ray.pos_y - data->ray.dir_x * MOVE_SPEED;
-	if (data->pars.map[(int)new_posx][(int)data->ray.pos_y] != '1')
+	if (data->pars.maps[(int)new_posx][(int)data->ray.pos_y] != '1')
 		data->ray.pos_x = new_posx;
-	if (data->pars.map[(int)data->ray.pos_x][(int)new_posy] != '1')
+	if (data->pars.maps[(int)data->ray.pos_x][(int)new_posy] != '1')
 		data->ray.pos_y = new_posy;
 }
 
@@ -81,4 +81,10 @@ void	made_mouv(t_data *data, int keycode)
 		rotate_left(data);
 	if (keycode == RIGHT)
 		rotate_right(data);
+	printf("RAY_DIR_x = %f\n", data->ray.dir_x);
+	printf("RAY_DIR_Y = %f\n", data->ray.dir_y);
+	printf("POS_X = %f\n", data->ray.pos_x);
+	printf("POS_Y = %f\n", data->ray.pos_y);
+	for (int i = 0; data->pars.maps[i]; i++)
+		printf("=> %s\n", data->pars.maps[i]);
 }
