@@ -15,18 +15,24 @@
 int	valid_rgb_line(char *line)
 {
 	int	i;
+	int	flag;
 
+	flag = 0;
 	i = 1;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (line[i] != '\n')
 	{
 		while (ft_isdigit(line[i]) || line[i] == ',')
+		{
+			if (line[i] == ',')
+				flag++; 
 			i++;
-		while (line[i] == ' ' || line[i] == '\t')
-			i++;
+		}
 	}
-	if (line[i] != '\n')
+	while (line[i] == ' ' || line[i] == '\t')
+			i++;
+	if (line[i] != '\n' || flag != 2)
 		return (0);
 	return (1);
 }
