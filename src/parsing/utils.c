@@ -17,14 +17,14 @@ int	goto_next_value(char *line)
 	int	i;
 
 	i = 0;
-	if (!ft_isdigit(line[i]))
+	if (!ft_isdigit(line[i]) && !is_sign(line[i]))
 	{
-		while (!ft_isdigit(line[i]))
+		while (!ft_isdigit(line[i]) && !is_sign(line[i]))
 			i++;
 	}
-	else if (ft_isdigit(line[i]))
+	else if (ft_isdigit(line[i]) || is_sign(line[i]))
 	{
-		while (ft_isdigit(line[i]))
+		while (ft_isdigit(line[i]) || is_sign(line[i]))
 			i++;
 		i++;
 	}
