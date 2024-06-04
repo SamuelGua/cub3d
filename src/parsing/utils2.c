@@ -40,6 +40,8 @@ void	free_all(t_parsing *data)
 	free(data->so);
 	free(data->we);
 	free(data->ea);
+	if(data->map == NULL)
+		return ;
 	while (data->map[i] != NULL)
 		free(data->map[i++]);
 	free(data->map);
