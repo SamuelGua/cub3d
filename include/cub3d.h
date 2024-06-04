@@ -168,6 +168,5 @@ int						valid_rgb_line(char *line);
 int						is_map2(int i, int j, t_parsing *data, char **map);
 int						is_map(int i, int j, t_parsing *data, char **map);
 void 					init_null(t_parsing *data);
-int						is_sign(char c);
 
 #endif
