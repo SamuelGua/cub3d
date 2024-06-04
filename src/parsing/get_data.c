@@ -79,8 +79,6 @@ void	get_rgb(t_parsing *data, char *line)
 
 void	get_map_height(t_parsing *data, char **line, int fd)
 {
-	data->stash = NULL;
-	data->map_height = 0;
 	while (*line != NULL)
 	{
 		if (is_only_digits_or_whitespace(*line))
