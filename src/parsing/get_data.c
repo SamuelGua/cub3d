@@ -22,7 +22,10 @@ int	get_data(t_parsing *data)
 		return (0);
 	line = get_next_line(fd);
 	if (line == NULL)
+	{
+		close(fd);
 		return (0);
+	}
 	get_texture(data, &line, fd);
 	get_map_height(data, &line, fd);
 	get_map(data);
