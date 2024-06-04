@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void init_null(t_parsing *data)
+void    init_null(t_parsing *data)
 {
     data->name = NULL;
     data->map = NULL;
@@ -29,4 +29,11 @@ void init_null(t_parsing *data)
     data->ceiling[1] = -1;
     data->ceiling[2] = -1;
     data->stash = NULL;
+}
+
+int    is_sign(char c)
+{
+    if (c == '-' || c == '+')
+        return (1);
+    return (0);
 }
