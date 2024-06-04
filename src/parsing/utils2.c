@@ -25,7 +25,8 @@ int	valid_rgb_line(char *line)
 	{
 		while (ft_isdigit(line[i]) || line[i] == ',')
 		{
-			if (line[i] == ',')
+			if (line[i] == ',' && ft_isdigit(line[i-1])
+				&& ft_isdigit(line[i+1]))
 				flag++; 
 			i++;
 		}
