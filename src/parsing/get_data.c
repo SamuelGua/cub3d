@@ -84,9 +84,6 @@ void	get_rgb(t_parsing *data, char *line)
 
 void	get_map_height(t_parsing *data, char **line, int fd)
 {
-	int	i;
-
-	i = 0;
 	data->stash = NULL;
 	data->map_height = 0;
 	while (*line != NULL)
