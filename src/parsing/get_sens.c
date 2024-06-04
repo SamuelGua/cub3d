@@ -18,6 +18,8 @@ void	get_sens(t_parsing *data)
 	int	j;
 
 	i = 0;
+	if (data->map == NULL)
+		return ;
 	while (data->map[i] != NULL)
 	{
 		j = 0;
