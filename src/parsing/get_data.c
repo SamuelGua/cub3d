@@ -48,8 +48,6 @@ void	get_texture(t_parsing *data, char **line, int fd)
 		free(*line);
 		*line = get_next_line(fd);
 	}
-	if (!data->no || !data->so ||!data->ea || !data->we)
-		exit(2);
 }
 
 void	get_rgb(t_parsing *data, char *line)
