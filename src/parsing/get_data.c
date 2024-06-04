@@ -42,14 +42,9 @@ void	get_texture(t_parsing *data, char **line, int fd)
 			data->we = ft_strdup2(skip_to_value(*line));
 		else if (ft_strncmp(*line, "EA ", 3) == 0)
 			data->ea = ft_strdup2(skip_to_value(*line));
-		else if (ft_strncmp(*line, "F ", 2) == 0 || ft_strncmp(*line, "C ",
-				2) == 0)
-		{
-			if (valid_rgb_line(*line) == 0)
-				data->floor[0] = -1;
-			else
+		else if ((ft_strncmp(*line, "F ", 2) == 0 || ft_strncmp(*line, "C ",
+				2) == 0) && valid_rgb_line(*line))
 				get_rgb(data, *line);
-		}
 		free(*line);
 		*line = get_next_line(fd);
 	}
