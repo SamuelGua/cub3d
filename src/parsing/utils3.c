@@ -30,10 +30,3 @@ void    init_null(t_parsing *data)
     data->ceiling[2] = -1;
     data->stash = NULL;
 }
-
-int    is_sign(char c)
-{
-    if (c == '-' || c == '+')
-        return (1);
-    return (0);
-}
