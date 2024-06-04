@@ -32,7 +32,7 @@ RAYCAST				= cast_wall.c cast_floor_ciel.c cast_utils_1.c cast_utils_2.c
 
 
 PARSING_PATH		= $(PARSING:%=src/parsing/%)
-PARSING				= checking.c get_data.c utils.c check_map.c get_sens.c utils2.c
+PARSING				= checking.c get_data.c utils.c check_map.c get_sens.c utils2.c utils3.c
 
 INCLUDE			= include/libft.h include/cub3d.h
 

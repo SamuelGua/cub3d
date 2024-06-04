@@ -19,7 +19,7 @@ int	key_capt(int keycode, t_data *data)
 	made_mouv(data, keycode);
 	if (castray(data))
 	{
-		printf("Error: FAIL TO CAST RAY\n");
+		write(1, "Error: FAIL TO CAST RAY\n", 25);
 		free_pars(data);
 		free_img(data);
 		free_mlx(data);
@@ -33,20 +33,20 @@ int	mlx_routine(t_data *data)
 	init_data(data);
 	data->mlx.ptr = mlx_init();
 	if (!data->mlx.ptr)
-		return (free_pars(data), printf("Error: FAIL TO INIT MLX\n"), 1);
+		return (free_pars(data), write(1, "Error: FAIL TO INIT MLX\n", 25), 1);
 	if (init_img(data))
 		return (free_pars(data), free_mlx(data),
-			printf("Error: FAIL TO INIT IMG\n"), 1);
+			write(1, "Error: FAIL TO INIT IMG\n", 25), 1);
 	data->mlx.win = mlx_new_window(data->mlx.ptr, SCREEN_W, SCREEN_H, "CUD3D");
 	if (!data->mlx.win)
 	{
 		free_img(data);
 		free_mlx(data);
-		return (free_pars(data), printf("Error: FAIL TO CREAT WINDOW\n"), 1);
+		return (free_pars(data), write(1, "Error: FAIL TO CREAT WINDOW\n", 29), 1);
 	}
 	if (castray(data))
 	{
-		printf("Error: FAIL TO CAST RAY\n");
+		write(1, "Error: FAIL TO CAST RAY\n", 25);
 		(free_pars(data), free_img(data), free_mlx(data));
 		exit(1);
 	}
@@ -61,7 +61,8 @@ int	main(int ac, char *av[])
 	t_data	data;
 
 	if (ac != 2 || !av)
-		return (printf("GIVE A PARAMETER\n"), 1);
+		return (write(1, "GIVE A PARAMETER\n", 18), 1);
+	init_null(&data.pars);
 	data.pars.name = av[1];
 	if (checkformat(data.pars.name, ".cub") == 0)
 		return (0);
