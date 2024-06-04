@@ -23,7 +23,7 @@ int	valid_rgb_line(char *line)
 		i++;
 	if (line[i] != '\n')
 	{
-		while (ft_isdigit(line[i]) || line[i] == ',' || is_sign(line[i]))
+		while (ft_isdigit(line[i]) || line[i] == ',')
 		{
 			if (line[i] == ',')
 				flag++; 
