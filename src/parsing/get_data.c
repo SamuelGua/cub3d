@@ -48,6 +48,8 @@ void	get_texture(t_parsing *data, char **line, int fd)
 		else if ((ft_strncmp(*line, "F", 1) == 0 || ft_strncmp(*line, "C",
 				1) == 0) && valid_rgb_line(*line))
 				get_rgb(data, *line);
+		else if (!ft_is_whitespaces(*line))
+			break ;
 		free(*line);
 		*line = get_next_line(fd);
 	}
