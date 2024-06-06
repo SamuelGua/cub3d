@@ -37,16 +37,16 @@ void	get_texture(t_parsing *data, char **line, int fd)
 {
 	while (*line && !is_only_digits_or_whitespace(*line))
 	{
-		if (ft_strncmp(*line, "NO ", 3) == 0)
+		if (ft_strncmp(*line, "NO", 2) == 0)
 			data->no = ft_strdup2(skip_to_value(*line));
-		else if (ft_strncmp(*line, "SO ", 3) == 0)
+		else if (ft_strncmp(*line, "SO", 2) == 0)
 			data->so = ft_strdup2(skip_to_value(*line));
-		else if (ft_strncmp(*line, "WE ", 3) == 0)
+		else if (ft_strncmp(*line, "WE", 2) == 0)
 			data->we = ft_strdup2(skip_to_value(*line));
-		else if (ft_strncmp(*line, "EA ", 3) == 0)
+		else if (ft_strncmp(*line, "EA", 2) == 0)
 			data->ea = ft_strdup2(skip_to_value(*line));
-		else if ((ft_strncmp(*line, "F ", 2) == 0 || ft_strncmp(*line, "C ",
-				2) == 0) && valid_rgb_line(*line))
+		else if ((ft_strncmp(*line, "F", 1) == 0 || ft_strncmp(*line, "C",
+				1) == 0) && valid_rgb_line(*line))
 				get_rgb(data, *line);
 		free(*line);
 		*line = get_next_line(fd);
