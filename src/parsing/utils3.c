@@ -30,3 +30,19 @@ void    init_null(t_parsing *data)
     data->ceiling[2] = -1;
     data->stash = NULL;
 }
+
+int	ft_is_whitespaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ' && str[i] != '\t'
+			&& str[i] != '\n' && str[i] != '\r'
+			&& str[i] != '\v' && str[i] != '\f')
+			return (0);
+		i++;
+	}
+	return (1);
+}
