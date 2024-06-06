@@ -82,7 +82,7 @@ void	get_rgb(t_parsing *data, char *line)
 
 void	get_map_height(t_parsing *data, char **line, int fd)
 {
-	while (*line != NULL)
+	if (*line != NULL)
 	{
 		if (is_only_digits_or_whitespace(*line))
 		{
@@ -92,10 +92,7 @@ void	get_map_height(t_parsing *data, char **line, int fd)
 				(stock_line(data, *line), free(*line));
 				*line = get_next_line(fd);
 			}
-			break ;
 		}
-		free(*line);
-		*line = get_next_line(fd);
 	}
 	while (*line)
 		(free(*line), *line = get_next_line(fd));
