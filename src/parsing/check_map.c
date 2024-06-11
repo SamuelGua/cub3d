@@ -30,14 +30,14 @@ int	check_map_wall(t_parsing *data, char **map)
 {
 	int	i;
 	int	j;
-
+	(void)data;
 	if (check_top_or_bottom(map, 0, 0) == 0)
 		return (0);
 	i = 1;
-	while (i < (data->map_height - 1))
+	while (map[i] && i < data->map_height)
 	{
 		j = 0;
-		while (map[i][j] == ' ' || map[i][j] == '\t')
+		while (map[i][j] && (map[i][j] == ' ' || map[i][j] == '\t'))
 			j++;
 		if (map[i][j] != '1')
 			return (0);
@@ -46,7 +46,7 @@ int	check_map_wall(t_parsing *data, char **map)
 			return (0);
 		i++;
 	}
-	if (check_top_or_bottom(map, i, 0) == 0)
+	if (check_top_or_bottom(map, i - 1, 0) == 0)
 		return (0);
 	return (1);
 }
@@ -54,8 +54,6 @@ int	check_map_wall(t_parsing *data, char **map)
 int	check_all_floor(t_parsing *data, char **map)
 {
 	if (check_close_floor(data, map) == 0)
-		return (0);
-	if (check_diag_floor(data, map) == 0)
 		return (0);
 	return (1);
 }
@@ -66,16 +64,13 @@ int	check_close_floor(t_parsing *data, char **map)
 	int	j;
 
 	i = 0;
-	while (i < (data->map_height - 1))
+	while (map[i] && i < (data->map_height - 1))
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0')
-			{
-				if (is_map(i, j, data, map) == 0)
-					return (0);
-			}
+			if (map[i][j] == '0' && is_map(i, j, data, map) == 0)
+				return (0);
 			j++;
 		}
 		i++;
@@ -83,25 +78,3 @@ int	check_close_floor(t_parsing *data, char **map)
 	return (1);
 }
 
-int	check_diag_floor(t_parsing *data, char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < (data->map_height - 1))
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '0')
-			{
-				if (is_map2(i, j, data, map) == 0)
-					return (0);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
