@@ -86,7 +86,7 @@ void	get_map_height(t_parsing *data, char **line, int fd)
 	{
 		if (is_only_digits_or_whitespace(*line))
 		{
-			while (*line && is_only_digits_or_whitespace(*line))
+			while (*line)
 			{
 				data->map_height++;
 				(stock_line(data, *line), free(*line));
